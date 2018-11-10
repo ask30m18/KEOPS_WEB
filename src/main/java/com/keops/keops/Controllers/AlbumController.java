@@ -1,7 +1,7 @@
 package com.keops.keops.Controllers;
 
 
-import com.keops.keops.model.Album;
+import com.keops.keops.model.AlbumEntity;
 import com.keops.keops.repository.AlbumRepository;
 import com.keops.keops.repository.UserRepository;
 import org.apache.velocity.exception.ResourceNotFoundException;
@@ -21,14 +21,19 @@ public class AlbumController {
     @Autowired
     private UserRepository userRepository;
 
+    @RequestMapping(value = "/welcome", method = RequestMethod.GET)
+    public String welcome() {
+        return "deneme";
+    }
+
     @GetMapping("/users/{userId}/albums")
-    public ArrayList<Album> getAlbumsByUserId(@PathVariable Long userId) {
+    public ArrayList<AlbumEntity> getAlbumsByUserId(@PathVariable Long userId) {
         return albumRepository.findByUserId(userId);
     }
 
     @PostMapping("/users/{userId}/albums")
-    public Album addAlbum(@PathVariable Long userId,
-                          @Valid @RequestBody Album album) {
+    public AlbumEntity addAlbum(@PathVariable Long userId,
+                                @Valid @RequestBody AlbumEntity album) {
         return userRepository.findById(userId)
                 .map(user -> {
                     album.setUser(user);
@@ -37,9 +42,9 @@ public class AlbumController {
     }
 
     @PutMapping("/users/{userId}/albums/{albumId}")
-    public Album updateAlbum(@PathVariable Long userId,
-                             @PathVariable Long albumId,
-                             @Valid @RequestBody Album albumRequest) {
+    public AlbumEntity updateAlbum(@PathVariable Long userId,
+                                   @PathVariable Long albumId,
+                                   @Valid @RequestBody AlbumEntity albumRequest) {
         if (!userRepository.existsById(userId)) {
             throw new ResourceNotFoundException("User not found with id " + userId);
         }

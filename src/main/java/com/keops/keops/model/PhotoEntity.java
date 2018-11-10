@@ -5,7 +5,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "photo")
-public class Photo extends AuditModel {
+public class PhotoEntity extends AuditModel {
 
     @Id
     @GeneratedValue
@@ -17,15 +17,15 @@ public class Photo extends AuditModel {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "ALBUM_ID", nullable = false)
-    private Album album;
+    private AlbumEntity album;
 
     @OneToMany(mappedBy = "photo")
-    private Set<Like> photoLikes;
+    private Set<LikeEntity> photoLikes;
 
     @OneToMany(mappedBy = "photo")
-    private Set<PhotoKeywords> photoKeyword;
+    private Set<TagEntity> photoKeyword;
 
-    public Photo() {
+    public PhotoEntity() {
 
     }
 
@@ -45,27 +45,27 @@ public class Photo extends AuditModel {
         this.likeCount = likeCount;
     }
 
-    public Album getAlbum() {
+    public AlbumEntity getAlbum() {
         return album;
     }
 
-    public void setAlbum(Album album1) {
+    public void setAlbum(AlbumEntity album1) {
         album = album1;
     }
 
-    public Set<Like> getPhotoLikes() {
+    public Set<LikeEntity> getPhotoLikes() {
         return photoLikes;
     }
 
-    public void setPhotoLikes(Set<Like> photoLikes) {
+    public void setPhotoLikes(Set<LikeEntity> photoLikes) {
         this.photoLikes = photoLikes;
     }
 
-    public Set<PhotoKeywords> getPhotoKeyword() {
+    public Set<TagEntity> getPhotoKeyword() {
         return photoKeyword;
     }
 
-    public void setPhotoKeyword(Set<PhotoKeywords> photoKeyword) {
+    public void setPhotoKeyword(Set<TagEntity> photoKeyword) {
         this.photoKeyword = photoKeyword;
     }
 }

@@ -6,7 +6,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "album")
-public class Album extends AuditModel {
+public class AlbumEntity extends AuditModel {
 
     @Id
     @GeneratedValue
@@ -18,12 +18,12 @@ public class Album extends AuditModel {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "USER_ID", nullable = false)
-    private User user;
+    private UserEntity user;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "album")
-    private Set<Photo> photos = new HashSet<Photo>(0);
+    private Set<PhotoEntity> photos = new HashSet<PhotoEntity>(0);
 
-    public Album() {
+    public AlbumEntity() {
 
     }
 
@@ -35,11 +35,11 @@ public class Album extends AuditModel {
         this.id = id;
     }
 
-    public Set<Photo> getPhotos() {
+    public Set<PhotoEntity> getPhotos() {
         return photos;
     }
 
-    public void setPhotos(Set<Photo> photos) {
+    public void setPhotos(Set<PhotoEntity> photos) {
         this.photos = photos;
     }
 
@@ -51,11 +51,11 @@ public class Album extends AuditModel {
         this.albumName = albumName;
     }
 
-    public User getUser() {
+    public UserEntity getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(UserEntity user) {
         this.user = user;
     }
 }

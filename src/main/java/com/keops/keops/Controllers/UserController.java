@@ -1,7 +1,7 @@
 package com.keops.keops.Controllers;
 
 
-import com.keops.keops.model.User;
+import com.keops.keops.model.UserEntity;
 import com.keops.keops.repository.UserRepository;
 import org.apache.velocity.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,18 +19,18 @@ public class UserController {
     private UserRepository userRepository;
 
     @GetMapping("/users")
-    public Page<User> getUsers(Pageable pageable) {
+    public Page<UserEntity> getUsers(Pageable pageable) {
         return userRepository.findAll(pageable);
     }
 
     @PostMapping("/users")
-    public User createUser(@Valid @RequestBody User user) {
+    public UserEntity createUser(@Valid @RequestBody UserEntity user) {
         return userRepository.save(user);
     }
 
     @PutMapping("/users/{userId}")
-    public User updateUser(@PathVariable Long userId,
-                           @Valid @RequestBody User userRequest) {
+    public UserEntity updateUser(@PathVariable Long userId,
+                                 @Valid @RequestBody UserEntity userRequest) {
         return userRepository.findById(userId)
                 .map(user -> {
                     user.setName(userRequest.getName());
