@@ -21,6 +21,11 @@ public class AlbumController {
     @Autowired
     private UserRepository userRepository;
 
+    @RequestMapping(value="/aa", method = RequestMethod.GET)
+    public String deneme(){
+        return "deneme";
+    }
+
     @GetMapping("/users/{userId}/albums")
     public ArrayList<Album> getAlbumsByUserId(@PathVariable Long userId) {
         return albumRepository.findByUserId(userId);
