@@ -6,7 +6,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "\"user\"")
-public class User extends AuditModel {
+public class UserEntity extends AuditModel {
 
     @Id
     @GeneratedValue
@@ -26,9 +26,9 @@ public class User extends AuditModel {
     private Integer password;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user")
-    private Set<Album> albums = new HashSet<Album>(0);
+    private Set<AlbumEntity> albums = new HashSet<AlbumEntity>(0);
 
-    public User() {
+    public UserEntity() {
 
     }
 
@@ -72,11 +72,11 @@ public class User extends AuditModel {
         this.id = id;
     }
 
-    public Set<Album> getAlbums() {
+    public Set<AlbumEntity> getAlbums() {
         return albums;
     }
 
-    public void setAlbums(Set<Album> albums) {
+    public void setAlbums(Set<AlbumEntity> albums) {
         this.albums = albums;
     }
 }

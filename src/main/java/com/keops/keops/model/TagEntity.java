@@ -3,8 +3,8 @@ package com.keops.keops.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "photoKeywords")
-public class PhotoKeywords extends AuditModel {
+@Table(name = "tag")
+public class TagEntity extends AuditModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -16,9 +16,9 @@ public class PhotoKeywords extends AuditModel {
 
     @ManyToOne
     @JoinColumn(name = "PHOTO_ID", nullable = false)
-    private Photo photo;
+    private PhotoEntity photo;
 
-    public PhotoKeywords() {
+    public TagEntity() {
 
     }
 
@@ -38,11 +38,11 @@ public class PhotoKeywords extends AuditModel {
         this.keyword = keyword;
     }
 
-    public Photo getPhoto() {
+    public PhotoEntity getPhoto() {
         return photo;
     }
 
-    public void setPhoto(Photo photo1) {
+    public void setPhoto(PhotoEntity photo1) {
         photo = photo1;
     }
 }
