@@ -21,8 +21,8 @@ public class AlbumController {
     @Autowired
     private UserRepository userRepository;
 
-    @RequestMapping(value = "/welcome", method = RequestMethod.GET)
-    public String welcome() {
+    @RequestMapping(value="/aa", method = RequestMethod.GET)
+    public String deneme(){
         return "deneme";
     }
 
