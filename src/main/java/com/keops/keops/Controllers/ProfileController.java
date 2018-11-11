@@ -6,16 +6,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class HelloController {
+public class ProfileController {
 
-    @RequestMapping("/hello")
+    @RequestMapping("/profile")
     public String hello(Model model, @RequestParam(value="name", required=false, defaultValue="World") String name) {
         model.addAttribute("name", name);
-        return "hello";
+        return "profile";
     }
 
-    @RequestMapping("/selam")
-    public String slm() {
-        return "ornek";
-    }
 }
